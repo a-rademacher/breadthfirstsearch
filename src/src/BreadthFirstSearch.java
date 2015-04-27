@@ -12,15 +12,14 @@ import javax.swing.JOptionPane;
  */
 public class BreadthFirstSearch extends javax.swing.JFrame {
     private BFS BFS;
-    int matrixY;
-    int matrixX;
+    int matrixSize;
 
     /**
      * Creates new form BreadthFirstSearch
      */
     public BreadthFirstSearch() {
         initComponents();
-        BFS = new BFS();
+        setup();
     }
 
     /**
@@ -32,73 +31,64 @@ public class BreadthFirstSearch extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane2 = new javax.swing.JScrollPane();
-        ta_OutputMatrix = new javax.swing.JTextArea();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        m_taInputMatrix = new javax.swing.JTextArea();
-        tb_MatrixSizeX = new javax.swing.JTextField();
-        tb_MatrixSizeY = new javax.swing.JTextField();
-        lbl_MatrixY = new javax.swing.JLabel();
-        lbl_MatrixX = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        ta_OutputMatrix1 = new javax.swing.JTextArea();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        m_taInputMatrix1 = new javax.swing.JTextArea();
         jScrollPane1 = new javax.swing.JScrollPane();
         m_taInputMatrix = new javax.swing.JTextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
-        ta_OutputMatrix = new javax.swing.JTextArea();
-        btn_setMatrixSize = new javax.swing.JButton();
-        jSeparator1 = new javax.swing.JSeparator();
-        btn_setMatrixSize1 = new javax.swing.JButton();
+        m_taOutputGraph = new javax.swing.JTextArea();
+        m_btnSetMatrixSize = new javax.swing.JButton();
+        m_tbMatrixSize = new javax.swing.JTextField();
+        m_btnSetMatrixValues = new javax.swing.JButton();
+        m_btnGetBFS = new javax.swing.JButton();
 
-        ta_OutputMatrix.setEditable(false);
-        ta_OutputMatrix.setColumns(20);
-        ta_OutputMatrix.setRows(5);
-        jScrollPane2.setViewportView(ta_OutputMatrix);
+        ta_OutputMatrix1.setEditable(false);
+        ta_OutputMatrix1.setColumns(20);
+        ta_OutputMatrix1.setRows(5);
+        jScrollPane3.setViewportView(ta_OutputMatrix1);
 
-        m_taInputMatrix.setEditable(false);
-        m_taInputMatrix.setColumns(20);
-        m_taInputMatrix.setLineWrap(true);
-        m_taInputMatrix.setRows(5);
-        m_taInputMatrix.setMinimumSize(new java.awt.Dimension(0, 16));
-        jScrollPane1.setViewportView(m_taInputMatrix);
+        m_taInputMatrix1.setEditable(false);
+        m_taInputMatrix1.setColumns(20);
+        m_taInputMatrix1.setLineWrap(true);
+        m_taInputMatrix1.setRows(5);
+        jScrollPane4.setViewportView(m_taInputMatrix1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        tb_MatrixSizeX.setToolTipText("X Size of Matrix");
-        tb_MatrixSizeX.setMinimumSize(new java.awt.Dimension(100, 28));
-        tb_MatrixSizeX.setPreferredSize(new java.awt.Dimension(100, 28));
-
-        tb_MatrixSizeY.setToolTipText("Y Size of Matrix");
-        tb_MatrixSizeY.setMinimumSize(new java.awt.Dimension(100, 28));
-        tb_MatrixSizeY.setPreferredSize(new java.awt.Dimension(100, 28));
-
-        lbl_MatrixY.setText("Matrix Y");
-
-        lbl_MatrixX.setText("Matrix X");
-
         m_taInputMatrix.setEditable(false);
         m_taInputMatrix.setColumns(20);
         m_taInputMatrix.setLineWrap(true);
         m_taInputMatrix.setRows(5);
-        m_taInputMatrix.setMinimumSize(new java.awt.Dimension(0, 16));
         jScrollPane1.setViewportView(m_taInputMatrix);
 
-        ta_OutputMatrix.setEditable(false);
-        ta_OutputMatrix.setColumns(20);
-        ta_OutputMatrix.setRows(5);
-        jScrollPane2.setViewportView(ta_OutputMatrix);
+        m_taOutputGraph.setEditable(false);
+        m_taOutputGraph.setColumns(20);
+        m_taOutputGraph.setRows(5);
+        jScrollPane2.setViewportView(m_taOutputGraph);
 
-        btn_setMatrixSize.setText("Set Matrix Size");
-        btn_setMatrixSize.setMinimumSize(new java.awt.Dimension(25, 29));
-        btn_setMatrixSize.addActionListener(new java.awt.event.ActionListener() {
+        m_btnSetMatrixSize.setText("Set Matrix Size");
+        m_btnSetMatrixSize.setMinimumSize(new java.awt.Dimension(25, 29));
+        m_btnSetMatrixSize.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_setMatrixSizeActionPerformed(evt);
+                m_btnSetMatrixSizeActionPerformed(evt);
             }
         });
 
-        btn_setMatrixSize1.setText("Set Values");
-        btn_setMatrixSize1.setMinimumSize(new java.awt.Dimension(25, 29));
-        btn_setMatrixSize1.addActionListener(new java.awt.event.ActionListener() {
+        m_btnSetMatrixValues.setText("Set Values");
+        m_btnSetMatrixValues.setMinimumSize(new java.awt.Dimension(25, 29));
+        m_btnSetMatrixValues.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_setMatrixSize1ActionPerformed(evt);
+                m_btnSetMatrixValuesActionPerformed(evt);
+            }
+        });
+
+        m_btnGetBFS.setText("Get BFS");
+        m_btnGetBFS.setMinimumSize(new java.awt.Dimension(25, 29));
+        m_btnGetBFS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                m_btnGetBFSActionPerformed(evt);
             }
         });
 
@@ -109,45 +99,31 @@ public class BreadthFirstSearch extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSeparator1)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lbl_MatrixY)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(tb_MatrixSizeY, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lbl_MatrixX)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(tb_MatrixSizeX, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btn_setMatrixSize, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btn_setMatrixSize1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 13, Short.MAX_VALUE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane2))
+                    .addComponent(jScrollPane2)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(m_tbMatrixSize, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(m_btnSetMatrixSize, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(m_btnGetBFS, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(m_btnSetMatrixValues, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 158, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(tb_MatrixSizeX, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lbl_MatrixX))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(tb_MatrixSizeY, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lbl_MatrixY)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btn_setMatrixSize1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(btn_setMatrixSize, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(4, 4, 4)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(m_tbMatrixSize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(m_btnSetMatrixValues, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(m_btnSetMatrixSize, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(m_btnGetBFS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -157,9 +133,9 @@ public class BreadthFirstSearch extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
    
-    private void btn_setMatrixSizeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_setMatrixSizeActionPerformed
+    private void m_btnSetMatrixSizeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m_btnSetMatrixSizeActionPerformed
       if(checkValue()){
-          BFS.setAdjacenyMatrix(matrixX, matrixY);
+          //BFS.setAdjacenyMatrix(void);
           m_taInputMatrix.enableInputMethods(true);
           
       }else
@@ -167,21 +143,16 @@ public class BreadthFirstSearch extends javax.swing.JFrame {
           String errorMessage = "MatrixX and MatrixY, must be greater than or equal to zero";
           JOptionPane.showMessageDialog(null, errorMessage,"Error",JOptionPane.ERROR_MESSAGE);
       }
-    }//GEN-LAST:event_btn_setMatrixSizeActionPerformed
+    }//GEN-LAST:event_m_btnSetMatrixSizeActionPerformed
 
-    private void btn_setMatrixSize1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_setMatrixSize1ActionPerformed
+    private void m_btnGetBFSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m_btnGetBFSActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btn_setMatrixSize1ActionPerformed
+    }//GEN-LAST:event_m_btnGetBFSActionPerformed
 
-    protected boolean checkValue(){
-        matrixX = Integer.parseInt(tb_MatrixSizeX.getText());
-        matrixY = Integer.parseInt(tb_MatrixSizeY.getText());
-        
-        if(matrixX >=1 || matrixY >= 1)
-            return true;
-        else 
-            return false;     
-    }
+    private void m_btnSetMatrixValuesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m_btnSetMatrixValuesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_m_btnSetMatrixValuesActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -218,16 +189,35 @@ public class BreadthFirstSearch extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_setMatrixSize;
-    private javax.swing.JButton btn_setMatrixSize1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JLabel lbl_MatrixX;
-    private javax.swing.JLabel lbl_MatrixY;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JButton m_btnGetBFS;
+    private javax.swing.JButton m_btnSetMatrixSize;
+    private javax.swing.JButton m_btnSetMatrixValues;
     private javax.swing.JTextArea m_taInputMatrix;
-    private javax.swing.JTextArea ta_OutputMatrix;
-    private javax.swing.JTextField tb_MatrixSizeX;
-    private javax.swing.JTextField tb_MatrixSizeY;
+    private javax.swing.JTextArea m_taInputMatrix1;
+    private javax.swing.JTextArea m_taOutputGraph;
+    private javax.swing.JTextField m_tbMatrixSize;
+    private javax.swing.JTextArea ta_OutputMatrix1;
     // End of variables declaration//GEN-END:variables
+
+    private void setup() {
+        BFS = new BFS();
+    }
+    
+    private boolean checkValue(){
+        matrixSize = Integer.parseInt(m_tbMatrixSize.getText());
+        if(matrixSize >=1)
+            return true;
+        else 
+            return false;     
+    }
+    
+    private void getMatrix(){
+        String str = m_taInputMatrix.getText();
+        int strLength = str.length();
+
+    }
 }

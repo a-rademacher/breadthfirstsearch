@@ -5,6 +5,9 @@
  */
 package src;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 
 /**
  *
@@ -12,23 +15,27 @@ package src;
  */
 public class BFS {
     
-    private boolean[][] adjacenyMatrix;
+    private int[][] adjacenyMatrix;
+    private Queue<Integer> queue;
+    
+    public BFS(){
+        queue = new LinkedList<Integer>();
+    }
     
     /**
      * 
-     * @param matrixX - The X size of Matrix.
-     * @param matrixY - The Y size of Matrix.
+     * @param matrixSize 
      */
-    public void setAdjacenyMatrix(int matrixX, int matrixY){
-        adjacenyMatrix = new boolean[matrixX][matrixY];
+    public void setAdjacenyMatrix(int[][] matrixSize){
+        adjacenyMatrix = matrixSize;
     }
     
-    
-    public void setValue(String input){
+    private void bfs(int source){
+        int numberOfNodes = adjacenyMatrix[source].length - 1;
         
-    }
-    
-    private void setMatrixValues(int[] input){
+        int[] visted = new int[numberOfNodes + 1];
+        int i, element;
+        
         
     }
     
